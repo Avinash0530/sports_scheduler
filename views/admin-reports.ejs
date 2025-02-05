@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Reports</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="header">
+        <span>Admin Reports</span>
+        <form action="/logout" method="get">
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+    </div>
+
+    <div class="report-container">
+        <h2>Reports Overview</h2>
+        <div class="report-section">
+            <h3>Total Sessions Played in the Last Week</h3>
+            <p><%= totalSessions %> sessions</p>
+        </div>
+        <div class="report-section">
+            <h3>Popularity of Sports in the Last Week</h3>
+            <% if (sportPopularity.length > 0) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sport</th>
+                            <th>Participation Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% sportPopularity.forEach(sport => { %>
+                            <tr>
+                                <td><%= sport.sport %></td>
+                                <td><%= sport.participation_count %></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>No sports data available for the last month.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="back-button">
+        <a href="/admin-dashboard" class="btn">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>
